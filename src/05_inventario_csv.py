@@ -45,8 +45,9 @@ def main():
     dispositivos = consultar("network-device", token)
     hosts = consultar("host", token)
 
-    with open(ARCHIVO, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
+    # ";" y utf-8-sig: Excel en español abre el archivo separado en columnas y con acentos correctos
+    with open(ARCHIVO, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.writer(f, delimiter=";")
         w.writerow(["tipo", "nombre", "ip", "mac / plataforma", "estado / conectado a"])
         for d in dispositivos:
             w.writerow([
