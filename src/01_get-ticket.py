@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 api_url = "http://localhost:58000/api/v1/ticket"
 
@@ -7,8 +8,8 @@ headers = {
 }
 
 body_json = {
-    "username": "cisco",
-    "password": "cisco123!"
+    "username": os.getenv("NC_USER", "admin"),
+    "password": os.getenv("NC_PASS", "")  # clave tomada de la variable de entorno NC_PASS
 }
 
 resp = requests.post(api_url, json.dumps(body_json), headers=headers)

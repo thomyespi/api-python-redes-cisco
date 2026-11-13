@@ -1,13 +1,14 @@
 #Módulos que se usarán
 import requests #Para entender solicitudes
 import json #Para reconocer el formato json
+import os #Para leer las credenciales de variables de entorno
 from tabulate import * #Para crear tablas
 
 baseUri = "http://localhost:58000/api/v1" #URL de PT
 
 # Llamada al API por el ticket
 headers = {"Content-Type": "application/json"} #Headers
-data = json.dumps({"username": "cisco", "password": "cisco123!"}) #Credenciales
+data = json.dumps({"username": os.getenv("NC_USER", "admin"), "password": os.getenv("NC_PASS", "")}) #Credenciales (variables de entorno)
 resp = requests.post(baseUri+"/ticket", data=data, headers=headers) #URL específica
 
 print("Status de Solicitud:")
