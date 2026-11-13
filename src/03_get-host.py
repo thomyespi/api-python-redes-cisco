@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 api_url = "http://localhost:58000/api/v1/host"
 
@@ -16,4 +17,4 @@ print()
 hosts = response_json["response"]
 
 for host in hosts:
-    print(host["hostName"], "\t", host["hostIp"], "\t", host["hostMac"], "\t", host["connectedInterfaceName"])
+    print(host.get("hostName", "-"), "\t", host.get("hostIp", "-"), "\t", host.get("hostMac", "-"), "\t", host.get("connectedInterfaceName", "-"))

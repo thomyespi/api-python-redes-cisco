@@ -33,7 +33,7 @@ host_list=[]
 i=0
 for item in result["response"]:
     i+=1
-    host_list.append([i,item["hostname"],item["serialNumber"],item["softwareVersion"]])
+    host_list.append([i,item.get("hostname","-"),item.get("serialNumber","-"),item.get("softwareVersion","-")]) # .get: el ISP (Wrong credential) no tiene hostname
     #print(item["hostname"]+" "+item["serialNumber"]+" "+item["softwareVersion"]) #Lista completa
 
 print(tabulate(host_list,headers=["Hostname","Serial Number","Software Version"],tablefmt='rst')) #Tabla ordenada 
@@ -50,7 +50,7 @@ host_list=[]
 i=0
 for item in result["response"]:
     i+=1
-    host_list.append([i,item["hostName"],item["hostType"],item["hostIp"]])
+    host_list.append([i,item.get("hostName","-"),item.get("hostType","-"),item.get("hostIp","-")])
     #print(item["hostName"]+" "+item["hostType"]+" "+item["hostIp"]) #Lista completa
 
 print(tabulate(host_list,headers=["Hostname","Tipo","IP"],tablefmt='rst')) #Tabla ordenada 

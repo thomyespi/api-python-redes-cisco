@@ -1,4 +1,5 @@
 import json
+import os
 import requests
 api_url = "http://localhost:58000/api/v1/network-device"
 
@@ -18,4 +19,5 @@ print()
 networkDevices = response_json["response"]
 
 for networkDevice in networkDevices:
-    print(networkDevice["hostname"], "\t", networkDevice["platformId"], "\t", networkDevice["managementIpAddress"])
+    # .get(): el ISP (Wrong credential) no tiene hostname ni plataforma
+    print(networkDevice.get("hostname", "-"), "\t", networkDevice.get("platformId", "-"), "\t", networkDevice.get("managementIpAddress", "-"))
