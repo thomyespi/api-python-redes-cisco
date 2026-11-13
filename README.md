@@ -61,6 +61,8 @@ Como el repositorio es público, **los usuarios y claves no quedan escritos en e
 | `NC_PASS` | Clave del Network Controller | (la del grupo) |
 | `NC_TICKET` | Ticket para `02` y `03`, obtenido con `01_get-ticket.py` | `NC-4-...-nbi` |
 
+Además, en 02, 03 y 04 se reemplazó el acceso directo a los campos (item["hostname"]) por item.get("hostname", "-"): el ISP figura en el controlador con estado Wrong credential y no tiene hostname, y con el acceso directo el script se cortaba con KeyError.
+
 En Windows (PowerShell), antes de ejecutar:
 
 ```powershell
